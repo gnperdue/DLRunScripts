@@ -1,7 +1,5 @@
 """
-python mnv_script_gen.py config_file script_key [MODEL_CODE_BASE]
-
-- MODEL_CODE_BASE is optional - it defaults to YYYYMMDD
+python mnv_script_gen.py config_file script_key
 """
 from __future__ import print_function
 import subprocess
@@ -27,10 +25,6 @@ if len(sys.argv) < 3:
 
 config_file = str(sys.argv[1])
 script_key = str(sys.argv[2])
-if len(sys.argv) > 3:
-    model_code_base = str(sys.argv[3])
-else:
-    model_code_base = time.strftime('%Y%m%d')
 
 p = subprocess.Popen('hostname', shell=True, stdout=subprocess.PIPE)
 host_name = p.stdout.readlines()[0].strip()
@@ -66,19 +60,21 @@ valid_sample = config.get('SampleLabels', 'valid')
 test_sample = config.get('SampleLabels', 'test')
 pred_sample = config.get('SampleLabels', 'pred')
 
-# training opts - batch_norm is used in multiple places
+# training opts
 optimizer = config.get('Training', 'optimizer')
-batchf = 'do_batch_norm' if int(config.get('Training', 'batch_norm')) > 0 \
-         else 'nodo_batch_norm'
+batch_norm = int(config.get('Training', 'batch_norm'))
+batch_norm_label = 'doBatchNorm' if batch_norm > 0 else 'nodoBatchNorm'
+batch_norm_flag = 'do_batch_norm' if batch_norm > 0 else 'nodo_batch_norm'
 batch_size = int(config.get('Training', 'batch_size'))
 
-# model code
-model_code = model_code_base + '_' + host_name + '_' + 'batch' + \
-             str(batch_size) + '_' + optimizer + '_train_' + \
-             train_sample + '_valid_' + valid_sample + '_' + batchf + \
-             '_targ_' + targets_label + '_nclass_' + str(n_classes)
-
 # paths
+model_version = config.get('Paths', 'model_version')
+model_code = model_version + '_' + targets_label + '_nclass' + \
+             str(n_classes) + '_train' + train_sample.upper() + \
+             '_valid' + valid_sample.upper() + '_test' + \
+             test_sample.upper() + '_opt' + optimizer.upper() + \
+             '_batchsz' + str(batch_size) + '_' + batch_norm_label + '_' + \
+             host_name
 basep = config.get('Paths', 'basep')
 data_basep = os.path.join(
     basep,
@@ -117,7 +113,7 @@ pred_store_dir = os.path.join(
 setup_dir(pred_store_dir)
 pred_store_name = os.path.join(
     pred_store_dir,
-    'mnv_st_epsilon_predictions' + pred_sample + '_model_' + model_code
+    'mnv_st_epsilon_predictions' + pred_sample.upper() + '_model_' + model_code
 )
 pred_store_flag = '--pred_store_name ' + pred_store_name
 
@@ -135,7 +131,7 @@ arg_parts.append('--file_root ' + filepat + str(imgw_x) + '_')
 if optimizer is not '':
     arg_parts.append('--strategy %s' % optimizer)
 arg_parts.append('--batch_size %d' % batch_size)
-arg_parts.append('--%s' % batchf)
+arg_parts.append('--%s' % batch_norm_flag)
 
 arg_parts.append(data_dirs_flag)
 arg_parts.append(log_file_flag)
