@@ -4,7 +4,6 @@ python mnv_script_gen.py config_file script_key
 from __future__ import print_function
 import subprocess
 import ConfigParser
-import time
 import os
 import sys
 
@@ -75,10 +74,8 @@ model_code = model_version + '_' + targets_label + '_nclass' + \
              test_sample.upper() + '_opt' + optimizer.upper() + \
              '_batchsz' + str(batch_size) + '_' + batch_norm_label + '_' + \
              host_name
-basep = config.get('Paths', 'basep')
 data_basep = os.path.join(
-    basep,
-    config.get('Paths', 'data_path_ext'),
+    config.get('Paths', 'data_path'),
     config.get('Paths', 'processing_version')
 )
 data_dirs = [os.path.join(data_basep, pth)
@@ -86,11 +83,12 @@ data_dirs = [os.path.join(data_basep, pth)
 for dd in data_dirs:
     assert os.path.exists(dd)
 data_dirs_flag = '--data_dir ' + ','.join(data_dirs)
-log_dir = os.path.join(
-    basep,
-    config.get('Paths', 'log_path_ext'),
-    config.get('Paths', 'processing_version')
-)
+log_dir = config.get('Paths', 'log_path')
+if log_dir == '':
+    log_dir = os.path.join(
+        os.getcwd(),
+        'job' + script_key
+    )
 setup_dir(log_dir)
 log_file = os.path.join(
     log_dir,
@@ -98,16 +96,14 @@ log_file = os.path.join(
 )
 log_file_flag = '--log_name ' + log_file
 model_dir = os.path.join(
-    basep,
-    config.get('Paths', 'models_path_ext'),
+    config.get('Paths', 'models_path'),
     config.get('Paths', 'processing_version'),
     model_code
 )
 setup_dir(model_dir)
 model_dir_flag = '--model_dir ' + model_dir
 pred_store_dir = os.path.join(
-    basep,
-    config.get('Paths', 'pred_path_ext'),
+    config.get('Paths', 'pred_path'),
     config.get('Paths', 'processing_version'),
 )
 setup_dir(pred_store_dir)
@@ -199,4 +195,5 @@ with open(os.path.join(job_dir, job_name), 'w') as f:
         f.write('nvidia-smi -L >> {}\n'.format(log_file))
         f.write('nvidia-smi >> {}\n\n'.format(log_file))
     f.write('echo "finished "`date`" "`date +%s`""\n')
+    f.write('rm *.pyc\n')
     f.write('exit 0')
