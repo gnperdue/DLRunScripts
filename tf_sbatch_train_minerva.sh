@@ -15,7 +15,7 @@ EOF
 
 # do the thing, etc.
 pushd job${SCRIPTKEY}
-cat job${SCRIPTKEY}.sh >& job_log.txt
-# sbatch --gres=gpu:${NGPU} --nodelist=${NODES} job${SCRIPTKEY}.sh
+# cat job${SCRIPTKEY}.sh >& job_log.txt
+sbatch --gres=gpu:${NGPU} --nodelist=${NODES} job${SCRIPTKEY}.sh
 popd
 
