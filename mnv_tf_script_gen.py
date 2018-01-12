@@ -27,6 +27,7 @@ script_key = str(sys.argv[2])
 
 p = subprocess.Popen('hostname', shell=True, stdout=subprocess.PIPE)
 host_name = p.stdout.readlines()[0].strip()
+host_name = host_name.split('.')[0]
 job_name = 'job' + script_key + '.sh'
 arg_parts = []
 
