@@ -141,9 +141,9 @@ switches = ['training', 'validation', 'testing', 'prediction',
             'a_short_run', 'log_devices']
 for switch in switches:
     arg_parts.append(
-        '--do_{}'.format(switch)
+        '--do_{0}'.format(switch)
         if int(config.get('RunOpts', switch))
-        else '--nodo_{}'.format(switch)
+        else '--nodo_{0}'.format(switch)
     )
 if '--do_prediction' in arg_parts:
     arg_parts.append(pred_store_flag)
@@ -156,7 +156,7 @@ framework_code = config.get('Code', 'framework').split(',')
 
 repo_info_string = """
 # print identifying info for this job
-cd {}
+cd {0}
 echo "Workdir is `pwd`"
 GIT_VERSION=`git describe --abbrev=12 --dirty --always`
 echo "Git repo version is $GIT_VERSION"
@@ -179,21 +179,21 @@ with open(os.path.join(job_dir, job_name), 'w') as f:
     f.write(repo_info_string)
     f.write('\n')
     for src_file in framework_code + [run_script]:
-        f.write('cp -v {}/{} {}\n'.format(
+        f.write('cp -v {0}/{1} {2}\n'.format(
             code_source_dir, src_file, job_dir
         ))
     f.write('\n')
     if container is not '':
-        f.write('singularity exec {} python {} {}\n\n'.format(
+        f.write('singularity exec {0} python {1} {2}\n\n'.format(
             container, run_script, arg_string
         ))
     else:
-        f.write('python {} {}\n\n'.format(
+        f.write('python {0} {1}\n\n'.format(
             run_script, arg_string
         ))
     if 'gpu' in host_name:
-        f.write('nvidia-smi -L >> {}\n'.format(log_file))
-        f.write('nvidia-smi >> {}\n\n'.format(log_file))
+        f.write('nvidia-smi -L >> {0}\n'.format(log_file))
+        f.write('nvidia-smi >> {0}\n\n'.format(log_file))
     f.write('echo "finished "`date`" "`date +%s`""\n')
     f.write('rm *.pyc\n')
     f.write('exit 0')
