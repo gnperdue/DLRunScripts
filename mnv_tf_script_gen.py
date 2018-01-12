@@ -158,7 +158,7 @@ framework_code = config.get('Code', 'framework').split(',')
 repo_info_string = """
 # print identifying info for this job
 cd {0}
-echo "Workdir is `pwd`"
+echo "{1} is `pwd`"
 GIT_VERSION=`git describe --abbrev=12 --dirty --always`
 echo "Git repo version is $GIT_VERSION"
 DIRTY=`echo $GIT_VERSION | perl -ne 'print if /dirty/'`
@@ -170,14 +170,15 @@ if [[ $DIRTY != "" ]]; then
   echo ""
   # exit 0
 fi
-""".format(job_dir)
+"""
 
 with open(os.path.join(job_dir, job_name), 'w') as f:
     f.write('#!/bin/bash\n')
     f.write('echo "started "`date`" "`date +%s`""\n')
     if 'gpu' in host_name:
         f.write('nvidia-smi -L\n')
-    f.write(repo_info_string)
+    f.write(repo_info_string.format(code_source_dir, 'Code source'))
+    f.write(repo_info_string.format(job_dir, 'Work'))
     f.write('\n')
     for src_file in framework_code + [run_script]:
         f.write('cp -v {0}/{1} {2}\n'.format(
