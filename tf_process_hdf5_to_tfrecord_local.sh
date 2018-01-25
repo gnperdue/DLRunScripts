@@ -11,13 +11,16 @@ VALIDFRAC=0.06
 STARTIDX=2
 
 # file logistics
-HDF5DIR="${HOME}/Documents/MINERvA/AI/hdf5"
+PROCESSING="201710"
+HDF5DIR="${HOME}/Documents/MINERvA/AI/hdf5/${PROCESSING}"
 FILEPAT="vtxfndingimgs_127x94_me1Bmc"
-OUTDIR="${HOME}/Documents/MINERvA/AI/minerva_tf/tfrec"
+OUTDIR="${HOME}/Documents/MINERvA/AI/minerva_tf/tfrec/${PROCESSING}"
 LOGFILE=log_hdf5_to_tfrec_minerva_xtxutuvtv${SCRIPTKEY}.txt
 HDF5TYPE="vtxfndingimgs"
 
-ARGS="--nevents $NEVTS --max_triplets $MAXTRIPS --file_pattern $FILEPAT --in_dir $HDF5DIR --out_dir $OUTDIR --train_fraction $TRAINFRAC --valid_fraction $VALIDFRAC --logfile $LOGFILE --compress_to_gz --start_idx $STARTIDX --hdf5_type $HDF5TYPE"
+mkdir -p $OUTDIR
+
+ARGS="--nevents $NEVTS --max_triplets $MAXTRIPS --file_pattern $FILEPAT --in_dir $HDF5DIR --out_dir $OUTDIR --train_fraction $TRAINFRAC --valid_fraction $VALIDFRAC --logfile $LOGFILE --compress_to_gz --start_idx $STARTIDX --hdf5_type $HDF5TYPE --test_read"
 echo $ARGS
 # --test_read \
 # --dry_run
