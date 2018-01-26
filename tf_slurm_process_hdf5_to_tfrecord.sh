@@ -1,11 +1,13 @@
 #!/bin/bash
 
+# We need the SCRIPTKEY to be set in the environment and expect to begin the
+# job in the execution directory (the sbatch wrapper script should put us
+# there).
 if [[ ${SCRIPTKEY} == "" ]]; then
   echo "Require the script key environment variable to run..."
   exit 1
 fi
-JOBBASEDIR=`pwd`
-JOBDIR="${JOBBASEDIR}/job${SCRIPTKEY}"
+JOBDIR=`pwd`
 
 # file logistics
 SAMPLE="me1Amc"
@@ -29,8 +31,8 @@ TRAINFRAC=0.0
 VALIDFRAC=0.0
 TRAINFRAC=0.88
 VALIDFRAC=0.06
-TESTREAD="--test_read"
 TESTREAD=""
+TESTREAD="--test_read"
 
 # which singularity image
 SNGLRTY="/data/perdue/singularity/tf_1_4.simg"
@@ -54,7 +56,7 @@ function check_repo
 }
 
 # check repo status - execution code
-cd /home/perdue/ANNMINERvA/TensorFlow
+cd $CODEDIR
 echo "Code source is `pwd`"
 check_repo
 
@@ -77,7 +79,7 @@ do
   cp -v ${CODEDIR}/$filename `pwd`
 done
 
-ARGS="--nevents $NEVTS --max_triplets $MAXTRIPS --file_pattern $FILEPAT --in_dir $HDF5DIR --out_dir $OUTDIR --train_fraction $TRAINFRAC --valid_fraction $VALIDFRAC --logfile $LOGFILE --compress_to_gz $TESTREAD --start_idx $STARTIDX"
+ARGS="--nevents $NEVTS --max_triplets $MAXTRIPS --file_pattern $FILEPAT --in_dir $HDF5DIR --out_dir $OUTDIR --train_fraction $TRAINFRAC --valid_fraction $VALIDFRAC --logfile $LOGFILE --compress_to_gz $TESTREAD --start_idx $STARTIDX --hdf5_type $HDF5TYPE"
 
 # show what we will do...
 cat << EOF
