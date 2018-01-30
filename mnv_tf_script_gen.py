@@ -44,6 +44,7 @@ num_epochs = int(config.get('RunOpts', 'num_epochs'))
 job_base_dir = config.get('RunOpts', 'job_base_dir')
 job_dir = os.path.join(job_base_dir, 'job' + script_key)
 setup_dir(job_dir)
+setup_dir(os.path.join(job_dir, 'mnvtf'))
 
 # data description
 n_classes = int(config.get('DataDescription', 'n_classes'))
@@ -153,7 +154,6 @@ arg_string = ' '.join(arg_parts)
 
 code_source_dir = config.get('Code', 'code_source_dir')
 run_script = config.get('Code', 'run_script')
-framework_code = config.get('Code', 'framework').split(',')
 
 repo_info_string = """
 # print identifying info for this job
@@ -180,10 +180,15 @@ with open(os.path.join(job_dir, job_name), 'w') as f:
     f.write(repo_info_string.format(code_source_dir, 'Code source'))
     f.write(repo_info_string.format(job_dir, 'Work'))
     f.write('\n')
-    for src_file in framework_code + [run_script]:
-        f.write('cp -v {0}/{1} {2}\n'.format(
-            code_source_dir, src_file, job_dir
-        ))
+    framework_code = os.listdir(os.path.join(code_source_dir, 'mnvtf'))
+    for src_file in framework_code:
+        if (src_file.split('.')[-1] == 'py'):
+            f.write('cp -v {0}/mnvtf/{1} {2}/mnvtf\n'.format(
+                code_source_dir, src_file, job_dir
+            ))
+    f.write('cp -v {0}/{1} {2}\n'.format(
+        code_source_dir, run_script, job_dir
+    ))
     f.write('\n')
     if container is not '':
         f.write('singularity exec {0} python {1} {2}\n\n'.format(
