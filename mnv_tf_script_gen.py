@@ -52,6 +52,7 @@ n_planecodes = int(config.get('DataDescription', 'n_planecodes'))
 imgw_x = int(config.get('DataDescription', 'imgw_x'))
 imgw_uv = int(config.get('DataDescription', 'imgw_uv'))
 targets_label = config.get('DataDescription', 'targets_label')
+tfrec_type = config.get('DataDescription', 'tfrec_type')
 filepat = config.get('DataDescription', 'filepat')
 compression = config.get('DataDescription', 'compression')
 
@@ -134,6 +135,7 @@ arg_parts.append('--%s' % batch_norm_flag)
 arg_parts.append(data_dirs_flag)
 arg_parts.append(log_file_flag)
 arg_parts.append(model_dir_flag)
+arg_parts.append('--tfrec_type %s' % tfrec_type)
 
 # run opt switches
 arg_parts.append('--log_level %s' % log_level)
