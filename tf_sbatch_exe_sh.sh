@@ -1,7 +1,7 @@
 #!/bin/bash
 
-EXESCRIPT=tf_slurm_process_hdf5_to_tfrecord.sh
 EXESCRIPT=tf_slurm_examine_tfrecords.sh
+EXESCRIPT=tf_slurm_process_hdf5_to_tfrecord.sh
 
 SCRIPTKEY=`date +%s`
 JOBDIR="job${SCRIPTKEY}"
