@@ -34,9 +34,11 @@ VALIDFRAC=0.06
 TESTREAD="--test_read"
 TESTREAD=""
 
+# pick up singularity v2.2 ??
+export PATH=/usr/local/singularity/bin:$PATH
 # which singularity image
 SNGLRTY="/data/perdue/singularity/tf_1_4.simg"
-CODEDIR="/home/perdue/ANNMINERvA/TensorFlow"
+CODEDIR="/home/perdue/ANNMINERvA"
 
 echo "started "`date`" "`date +%s`""
 nvidia-smi -L
@@ -67,17 +69,8 @@ check_repo
 
 mkdir -p $OUTDIR
 
-PYTHONLIST="
-hdf5_to_tfrec_minerva_xtxutuvtv.py
-mnv_utils.py
-MnvDataConstants.py
-MnvDataReaders.py
-MnvHDF5.py
-"
-for filename in $PYTHONLIST
-do
-  cp -v ${CODEDIR}/$filename `pwd`
-done
+cp -rv ${CODEDIR}/mnvtf `pwd`
+cp -v ${CODEDIR}/hdf5_to_tfrec_minerva_xtxutuvtv.py `pwd`
 
 ARGS="--nevents $NEVTS --max_triplets $MAXTRIPS --file_pattern $FILEPAT --in_dir $HDF5DIR --out_dir $OUTDIR --train_fraction $TRAINFRAC --valid_fraction $VALIDFRAC --logfile $LOGFILE --compress_to_gz $TESTREAD --start_idx $STARTIDX --hdf5_type $HDF5TYPE"
 
