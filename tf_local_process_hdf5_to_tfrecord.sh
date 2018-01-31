@@ -4,21 +4,27 @@ SCRIPTKEY=`date +%s`
 mkdir -p job${SCRIPTKEY}
 
 # file creation parameters
-NEVTS=100
+NEVTS=500
 MAXTRIPS=2
-TRAINFRAC=0.88
-VALIDFRAC=0.06
 STARTIDX=0
 
 # file logistics
 PROCESSING="201801"
+
 SAMPLE="me1Amc"
+HDF5TYPE="hadmultkineimgs"
+TRAINFRAC=0.88
+VALIDFRAC=0.06
+
+SAMPLE="me1Adata"
+HDF5TYPE="mnvimgs"
+TRAINFRAC=0.0
+VALIDFRAC=0.0
+
+FILEPAT="${HDF5TYPE}_127x94_${SAMPLE}"
 HDF5DIR="${HOME}/Documents/MINERvA/AI/hdf5/${PROCESSING}"
 OUTDIR="${HOME}/Documents/MINERvA/AI/minerva_tf/tfrec/${PROCESSING}"
 LOGFILE=log_hdf5_to_tfrec_minerva_xtxutuvtv${SCRIPTKEY}.txt
-HDF5TYPE="mnvimgs"
-HDF5TYPE="hadmultkineimgs"
-FILEPAT="${HDF5TYPE}_127x94_${SAMPLE}_tiny"
 
 mkdir -p $OUTDIR
 
@@ -30,19 +36,9 @@ cat << EOF
 python hdf5_to_tfrec_minerva_xtxutuvtv.py $ARGS
 EOF
 
-PYTHONLIST="
-hdf5_to_tfrec_minerva_xtxutuvtv.py
-mnv_utils.py
-MnvDataConstants.py
-MnvDataReaders.py
-MnvHDF5.py
-"
-
 pushd job${SCRIPTKEY}
-for filename in $PYTHONLIST
-do
-  cp -v ${HOME}/Documents/MINERvA/AI/ANNMINERvA/TensorFlow/$filename `pwd`
-done
+cp -rv ${HOME}/Documents/MINERvA/AI/ANNMINERvA/mnvtf `pwd`
+cp -v ${HOME}/Documents/MINERvA/AI/ANNMINERvA/hdf5_to_tfrec_minerva_xtxutuvtv.py `pwd`
 python hdf5_to_tfrec_minerva_xtxutuvtv.py $ARGS
 popd
 
