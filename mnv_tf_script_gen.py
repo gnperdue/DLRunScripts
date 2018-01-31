@@ -204,5 +204,6 @@ with open(os.path.join(job_dir, job_name), 'w') as f:
         f.write('nvidia-smi -L >> {0}\n'.format(log_file))
         f.write('nvidia-smi >> {0}\n\n'.format(log_file))
     f.write('echo "finished "`date`" "`date +%s`""\n')
-    f.write('rm *.pyc\n')
+    f.write('rm -f *.pyc\n')
+    f.write('rm -f mnvtf/*.pyc\n')
     f.write('exit 0')
