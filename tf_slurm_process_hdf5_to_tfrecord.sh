@@ -10,29 +10,30 @@ fi
 JOBDIR=`pwd`
 
 # file logistics
-SAMPLE="me1Amc"
 PROCESSING="201801"
 # STARTIDX=89
 STARTIDX=0
+TESTREAD="--test_read"
+TESTREAD=""
+
+SAMPLE="me1Adata"
+HDF5TYPE="mnvimgs"
+TRAINFRAC=0.0
+VALIDFRAC=0.0
+
+SAMPLE="me1Amc"
+HDF5TYPE="hadmultkineimgs"
+TRAINFRAC=0.88
+VALIDFRAC=0.06
+
+FILEPAT="${HDF5TYPE}_127x94_${SAMPLE}"
 HDF5DIR="/data/perdue/minerva/hdf5/${PROCESSING}"
 OUTDIR="/data/perdue/minerva/tensorflow/data/${PROCESSING}/${SAMPLE}"
 LOGFILE="log_hdf5_to_tfrec_minerva_xtxutuvtv${SCRIPTKEY}.txt"
-HDF5TYPE="vtxfndingimgs"
-HDF5TYPE="hadmultkineimgs"
-FILEPAT="${HDF5TYPE}_127x94_${SAMPLE}_tiny"
-FILEPAT="${HDF5TYPE}_127x94_${SAMPLE}"
 
 # file creation parameters
-NEVTS=20000
 NEVTS=10000
-MAXTRIPS=1
 MAXTRIPS=1000
-TRAINFRAC=0.0
-VALIDFRAC=0.0
-TRAINFRAC=0.88
-VALIDFRAC=0.06
-TESTREAD="--test_read"
-TESTREAD=""
 
 # pick up singularity v2.2 ??
 export PATH=/usr/local/singularity/bin:$PATH
