@@ -16,27 +16,21 @@ PLANECODES="--n_planecodes $NPLANECODES"
 IMGPAR="--imgw_x $IMGWX --imgw_uv $IMGWUV"
 
 SAMPLE="me1Amc"
-HDF5TYPE="vtxfndingimgs"
-HDF5TYPE="hadmultkineimgs"
-FILEPAT="${HDF5TYPE}_127x${IMGWX}_${SAMPLE}"
+TFRECTYPE="hadmultkineimgs"
 
-ARGS="--data_dir $DATADIR --file_root $FILEPAT --compression gz --log_name $LOGFILE --out_pattern $OUTPAT $PLANECODES $IMGPAR"
+SAMPLE="me1Adata"
+TFRECTYPE="mnvimgs"
+
+FILEPAT="${TFRECTYPE}_127x${IMGWX}_${SAMPLE}"
+
+ARGS="--data_dir $DATADIR --file_root $FILEPAT --compression gz --log_name $LOGFILE --out_pattern $OUTPAT $PLANECODES $IMGPAR --tfrec_type $TFRECTYPE"
 
 cat << EOF
 python tfrec_examiner.py $ARGS
 EOF
 
-PYTHONLIST="
-tfrec_examiner.py
-mnv_utils.py
-MnvDataConstants.py
-MnvDataReaders.py
-"
-
 pushd job${SCRIPTKEY}
-for filename in $PYTHONLIST
-do
-  cp -v ${HOME}/Documents/MINERvA/AI/ANNMINERvA/TensorFlow/$filename `pwd`
-done
+cp -rv ${HOME}/Documents/MINERvA/AI/ANNMINERvA/mnvtf `pwd`
+cp -v ${HOME}/Documents/MINERvA/AI/ANNMINERvA/tfrec_examiner.py `pwd`
 python tfrec_examiner.py $ARGS
 popd
