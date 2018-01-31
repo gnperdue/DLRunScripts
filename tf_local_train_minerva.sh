@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPTKEY=`date +%s`
-CONFIGFILE=Configs/tf_mnv_st_epsilon_local_iMac2017.cfg
+CONFIGFILE=Configs/tf_mnv_st_epsilon_local_iMac2017_training.cfg
 
 python mnv_tf_script_gen.py $CONFIGFILE $SCRIPTKEY
 
