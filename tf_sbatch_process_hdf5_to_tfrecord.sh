@@ -1,9 +1,11 @@
 #!/bin/bash
 
+EXESCRIPT=tf_slurm_process_hdf5_to_tfrecord.sh
+EXESCRIPT=tf_slurm_examine_tfrecords.sh
+
 SCRIPTKEY=`date +%s`
 JOBDIR="job${SCRIPTKEY}"
 mkdir -p $JOBDIR
-EXESCRIPT=tf_slurm_process_hdf5_to_tfrecord.sh
 cp $EXESCRIPT $JOBDIR
 
 NGPU=1
