@@ -4,22 +4,22 @@ SCRIPTKEY=`date +%s`
 mkdir -p job${SCRIPTKEY}
 
 # file creation parameters
-NEVTS=500
-MAXTRIPS=2
+NEVTS=1000
+MAXTRIPS=3
 STARTIDX=0
 
 # file logistics
 PROCESSING="201801"
 
-SAMPLE="me1Amc"
-HDF5TYPE="hadmultkineimgs"
-TRAINFRAC=0.88
-VALIDFRAC=0.06
-
 SAMPLE="me1Adata"
 HDF5TYPE="mnvimgs"
 TRAINFRAC=0.0
 VALIDFRAC=0.0
+
+SAMPLE="me1Amc"
+HDF5TYPE="hadmultkineimgs"
+TRAINFRAC=0.88
+VALIDFRAC=0.06
 
 FILEPAT="${HDF5TYPE}_127x94_${SAMPLE}"
 HDF5DIR="${HOME}/Documents/MINERvA/AI/hdf5/${PROCESSING}"

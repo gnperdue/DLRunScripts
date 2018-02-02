@@ -15,11 +15,11 @@ NPLANECODES=173
 PLANECODES="--n_planecodes $NPLANECODES"
 IMGPAR="--imgw_x $IMGWX --imgw_uv $IMGWUV"
 
-SAMPLE="me1Amc"
-TFRECTYPE="hadmultkineimgs"
-
 SAMPLE="me1Adata"
 TFRECTYPE="mnvimgs"
+
+SAMPLE="me1Amc"
+TFRECTYPE="hadmultkineimgs"
 
 FILEPAT="${TFRECTYPE}_127x${IMGWX}_${SAMPLE}"
 
