@@ -32,7 +32,8 @@ job_name = 'job' + script_key + '.sh'
 arg_parts = []
 
 config_defaults_dict = {
-    'network_model': 'TriColSTEpsilon'
+    'network_model': 'TriColSTEpsilon',
+    'save_every_n_batch': 500,
 }
 
 config = ConfigParser.SafeConfigParser(
@@ -74,6 +75,7 @@ batch_norm = int(config.get('Training', 'batch_norm'))
 batch_norm_label = 'doBatchNorm' if batch_norm > 0 else 'nodoBatchNorm'
 batch_norm_flag = 'do_batch_norm' if batch_norm > 0 else 'nodo_batch_norm'
 batch_size = int(config.get('Training', 'batch_size'))
+save_every_n_batch = int(config.get('Training', 'save_every_n_batch'))
 network_model = config.get('Training', 'network_model')
 
 # paths
@@ -138,6 +140,7 @@ if optimizer is not '':
     arg_parts.append('--strategy %s' % optimizer)
 arg_parts.append('--batch_size %d' % batch_size)
 arg_parts.append('--%s' % batch_norm_flag)
+arg_parts.append('--save_every_n_batch %d' % save_every_n_batch)
 arg_parts.append('--network_model %s' % network_model)
 
 arg_parts.append(data_dirs_flag)
