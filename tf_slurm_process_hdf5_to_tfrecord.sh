@@ -15,17 +15,19 @@ STARTIDX=0
 TESTREAD="--test_read"
 TESTREAD=""
 
-SAMPLE="me1Amc"
-HDF5TYPE="hadmultkineimgs"
-TRAINFRAC=0.88
-VALIDFRAC=0.06
-
 SAMPLE="me1Adata"
 HDF5TYPE="mnvimgs"
 TRAINFRAC=0.0
 VALIDFRAC=0.0
 
+SAMPLE="me1Amc"
+HDF5TYPE="hadmultkineimgs"
+HDF5TYPE="vtxfndingimgs"
+TRAINFRAC=0.88
+VALIDFRAC=0.06
+
 FILEPAT="${HDF5TYPE}_127x94_${SAMPLE}"
+FILEPAT="hadmultkineimgs_127x94_${SAMPLE}"
 HDF5DIR="/data/perdue/minerva/hdf5/${PROCESSING}"
 OUTDIR="/data/perdue/minerva/tensorflow/data/${PROCESSING}/${SAMPLE}"
 LOGFILE="log_hdf5_to_tfrec_minerva_xtxutuvtv${SCRIPTKEY}.txt"
