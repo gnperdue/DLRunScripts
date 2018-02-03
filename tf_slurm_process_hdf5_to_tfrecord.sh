@@ -11,7 +11,7 @@ JOBDIR=`pwd`
 
 # file logistics
 PROCESSING="201801"
-STARTIDX=158
+STARTIDX=0
 TESTREAD="--test_read"
 TESTREAD=""
 
@@ -22,6 +22,7 @@ VALIDFRAC=0.0
 
 SAMPLE="me1Amc"
 HDF5TYPE="hadmultkineimgs"
+HDF5TYPE="vtxfndingimgs"
 TRAINFRAC=0.88
 VALIDFRAC=0.06
 
