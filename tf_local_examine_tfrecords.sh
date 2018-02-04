@@ -15,13 +15,14 @@ NPLANECODES=173
 PLANECODES="--n_planecodes $NPLANECODES"
 IMGPAR="--imgw_x $IMGWX --imgw_uv $IMGWUV"
 
-SAMPLE="me1Adata"
+PLAYLIST="me1Adata"
 TFRECTYPE="mnvimgs"
 
-SAMPLE="me1Amc"
+PLAYLIST="me1Amc"
 TFRECTYPE="hadmultkineimgs"
+TFRECTYPE="vtxfndingimgs"
 
-FILEPAT="${TFRECTYPE}_127x${IMGWX}_${SAMPLE}"
+FILEPAT="${TFRECTYPE}_127x${IMGWX}_${PLAYLIST}"
 
 ARGS="--data_dir $DATADIR --file_root $FILEPAT --compression gz --log_name $LOGFILE --out_pattern $OUTPAT $PLANECODES $IMGPAR --tfrec_type $TFRECTYPE"
 
