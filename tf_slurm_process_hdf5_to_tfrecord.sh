@@ -15,20 +15,21 @@ STARTIDX=89
 TESTREAD="--test_read"
 TESTREAD=""
 
-SAMPLE="me1Amc"
+PLAYLIST="me1Amc"
 HDF5TYPE="hadmultkineimgs"
-HDF5TYPE="vtxfndingimgs"
+TFRECSTRUCTURE="hadmultkineimgs"
 TRAINFRAC=0.88
 VALIDFRAC=0.06
 
-SAMPLE="me1Adata"
+PLAYLIST="me1Adata"
 HDF5TYPE="mnvimgs"
+TFRECSTRUCTURE="mnvimgs"
 TRAINFRAC=0.0
 VALIDFRAC=0.0
 
-FILEPAT="${HDF5TYPE}_127x94_${SAMPLE}"
+INPUTFILEPAT="${HDF5TYPE}_127x94_${PLAYLIST}"
 HDF5DIR="/data/perdue/minerva/hdf5/${PROCESSING}"
-OUTDIR="/data/perdue/minerva/tensorflow/data/${PROCESSING}/${SAMPLE}"
+OUTDIR="/data/perdue/minerva/tensorflow/data/${PROCESSING}/${PLAYLIST}"
 LOGFILE="log_hdf5_to_tfrec_minerva_xtxutuvtv${SCRIPTKEY}.txt"
 
 # file creation parameters
@@ -73,7 +74,7 @@ mkdir -p $OUTDIR
 cp -rv ${CODEDIR}/mnvtf `pwd`
 cp -v ${CODEDIR}/hdf5_to_tfrec_minerva_xtxutuvtv.py `pwd`
 
-ARGS="--nevents $NEVTS --max_triplets $MAXTRIPS --file_pattern $FILEPAT --in_dir $HDF5DIR --out_dir $OUTDIR --train_fraction $TRAINFRAC --valid_fraction $VALIDFRAC --logfile $LOGFILE --compress_to_gz $TESTREAD --start_idx $STARTIDX --hdf5_type $HDF5TYPE"
+ARGS="--nevents $NEVTS --max_triplets $MAXTRIPS --input_file_pattern $INPUTFILEPAT --in_dir $HDF5DIR --out_dir $OUTDIR --train_fraction $TRAINFRAC --valid_fraction $VALIDFRAC --logfile $LOGFILE --compress_to_gz $TESTREAD --start_idx $STARTIDX --hdf5_type $HDF5TYPE --playlist $PLAYLIST --tfrec_struct $TFRECSTRUCTURE"
 
 # show what we will do...
 cat << EOF

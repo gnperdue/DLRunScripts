@@ -3,13 +3,11 @@
 SCRIPTKEY=`date +%s`
 mkdir -p job${SCRIPTKEY}
 
-# file creation parameters
+# file logistics
+PROCESSING="201801"
 NEVTS=1000
 MAXTRIPS=2
 STARTIDX=0
-
-# file logistics
-PROCESSING="201801"
 
 PLAYLIST="me1Adata"
 HDF5TYPE="mnvimgs"
