@@ -74,7 +74,7 @@ mkdir -p $OUTDIR
 cp -rv ${CODEDIR}/mnvtf `pwd`
 cp -v ${CODEDIR}/hdf5_to_tfrec_minerva_xtxutuvtv.py `pwd`
 
-ARGS="--nevents $NEVTS --max_triplets $MAXTRIPS --input_file_pattern $INPUTFILEPAT --in_dir $HDF5DIR --out_dir $OUTDIR --train_fraction $TRAINFRAC --valid_fraction $VALIDFRAC --logfile $LOGFILE --compress_to_gz $TESTREAD --start_idx $STARTIDX --hdf5_type $HDF5TYPE --playlist $PLAYLIST --tfrec_struct $TFRECSTRUCTURE"
+ARGS="--nevents $NEVTS --max_triplets $MAXTRIPS --input_file_pattern $INPUTFILEPAT --in_dir $HDF5DIR --out_dir $OUTDIR --train_fraction $TRAINFRAC --valid_fraction $VALIDFRAC --logfile $LOGFILE --compress_to_gz $TESTREAD --start_idx $STARTIDX --playlist $PLAYLIST --tfrec_struct $TFRECSTRUCTURE"
 
 # show what we will do...
 cat << EOF
