@@ -11,7 +11,7 @@ JOBDIR=`pwd`
 
 # file logistics
 PROCESSING="201801"
-STARTIDX=0
+STARTIDX=65
 TESTREAD="--test_read"
 TESTREAD=""
 
