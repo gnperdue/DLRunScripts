@@ -5,7 +5,7 @@ mkdir -p job${SCRIPTKEY}
 
 PROCESSING="201801"
 BASEP="${HOME}/Documents/MINERvA/AI/minerva_tf"
-DATADIR="${BASEP}/tfrec/${PROCESSING}"
+DATADIR="${BASEP}/tfrec2/${PROCESSING}"
 LOGFILE="log_examine_tfrec${SCRIPTKEY}.txt"
 OUTPAT="result_examine_tfrec${SCRIPTKEY}"
 
@@ -19,8 +19,8 @@ PLAYLIST="me1Adata"
 TFRECTYPE="mnvimgs"
 
 PLAYLIST="me1Amc"
-TFRECTYPE="hadmultkineimgs"
 TFRECTYPE="vtxfndingimgs"
+TFRECTYPE="hadmultkineimgs"
 
 FILEPAT="${TFRECTYPE}_127x${IMGWX}_${PLAYLIST}"
 
