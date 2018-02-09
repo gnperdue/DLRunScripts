@@ -3,8 +3,8 @@
 SCRIPTKEY=`date +%s`
 CONFIGFILE=Configs/tf_mnv_st_epsilon_wilson_cluster_testing.cfg
 CONFIGFILE=Configs/tf_mnv_st_epsilon_wilson_cluster_prediction.cfg
-CONFIGFILE=Configs/tf_mnv_st_epsilon_wilson_cluster_training_AB.cfg
 CONFIGFILE=Configs/tf_mnv_hadmult_wilson_cluster_training_AB.cfg
+CONFIGFILE=Configs/tf_mnv_st_epsilon_wilson_cluster_training_AB.cfg
 python mnv_tf_script_gen.py $CONFIGFILE $SCRIPTKEY
 
 NGPU=1
