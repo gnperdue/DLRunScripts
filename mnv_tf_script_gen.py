@@ -153,7 +153,7 @@ arg_parts.append('--log_level %s' % log_level)
 arg_parts.append('--num_epochs %d' % num_epochs)
 switches = ['training', 'validation', 'testing', 'prediction',
             'use_all_for_test', 'use_test_for_train', 'use_valid_for_test',
-            'a_short_run', 'log_devices']
+            'a_short_run', 'log_devices', 'pred_store_use_db']
 for switch in switches:
     arg_parts.append(
         '--do_{0}'.format(switch)
