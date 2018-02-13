@@ -34,6 +34,7 @@ arg_parts = []
 config_defaults_dict = {
     'network_model': 'TriColSTEpsilon',
     'save_every_n_batch': 500,
+    'override_machine_name_in_model': 0
 }
 
 config = ConfigParser.SafeConfigParser(
@@ -68,6 +69,13 @@ train_sample = config.get('SampleLabels', 'train')
 valid_sample = config.get('SampleLabels', 'valid')
 test_sample = config.get('SampleLabels', 'test')
 pred_sample = config.get('SampleLabels', 'pred')
+override_machine_name_in_model = int(config.get(
+    'SampleLabels', 'override_machine_name_in_model'
+))
+machine_name_in_model = config.get('SampleLabels', 'machine_name_in_model')
+if not override_machine_name_in_model:
+    machine_name_in_model = host_name
+    
 
 # training opts
 optimizer = config.get('Training', 'optimizer')
@@ -85,7 +93,7 @@ model_code = model_version + '_' + targets_label + '_nclass' + \
              '_valid' + valid_sample.upper() + '_test' + \
              test_sample.upper() + '_opt' + optimizer.upper() + \
              '_batchsz' + str(batch_size) + '_' + batch_norm_label + '_' + \
-             host_name
+             machine_name_in_model
 data_basep = os.path.join(
     config.get('Paths', 'data_path'),
     config.get('Paths', 'processing_version')
