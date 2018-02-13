@@ -72,10 +72,9 @@ pred_sample = config.get('SampleLabels', 'pred')
 override_machine_name_in_model = int(config.get(
     'SampleLabels', 'override_machine_name_in_model'
 ))
-machine_name_in_model = config.get('SampleLabels', 'machine_name_in_model')
-if not override_machine_name_in_model:
-    machine_name_in_model = host_name
-    
+machine_name_in_model = host_name
+if override_machine_name_in_model:
+    machine_name_in_model = config.get('SampleLabels', 'machine_name_in_model')
 
 # training opts
 optimizer = config.get('Training', 'optimizer')
