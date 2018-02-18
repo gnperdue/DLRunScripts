@@ -15,10 +15,10 @@ TFRECSTRUCTURE="mnvimgs"
 TRAINFRAC=0.0
 VALIDFRAC=0.0
 
-PLAYLIST="me1Amc"
+PLAYLIST="me1Amc_segments_bal"
 HDF5TYPE="hadmultkineimgs"
-TFRECSTRUCTURE="hadmultkineimgs"
 TFRECSTRUCTURE="vtxfndingimgs"
+TFRECSTRUCTURE="hadmultkineimgs"
 TRAINFRAC=0.88
 VALIDFRAC=0.06
 
