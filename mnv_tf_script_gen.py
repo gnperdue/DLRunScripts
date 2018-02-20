@@ -33,6 +33,7 @@ arg_parts = []
 
 config_defaults_dict = {
     'network_model': 'TriColSTEpsilon',
+    'network_creator': 'default',
     'save_every_n_batch': 500,
     'override_machine_name_in_model': 0
 }
@@ -84,6 +85,7 @@ batch_norm_flag = 'do_batch_norm' if batch_norm > 0 else 'nodo_batch_norm'
 batch_size = int(config.get('Training', 'batch_size'))
 save_every_n_batch = int(config.get('Training', 'save_every_n_batch'))
 network_model = config.get('Training', 'network_model')
+network_creator = config.get('Training', 'network_creator')
 
 # paths
 model_version = config.get('Paths', 'model_version')
@@ -149,6 +151,7 @@ arg_parts.append('--batch_size %d' % batch_size)
 arg_parts.append('--%s' % batch_norm_flag)
 arg_parts.append('--save_every_n_batch %d' % save_every_n_batch)
 arg_parts.append('--network_model %s' % network_model)
+arg_parts.append('--network_creator %s' % network_creator)
 
 arg_parts.append(data_dirs_flag)
 arg_parts.append(log_file_flag)
