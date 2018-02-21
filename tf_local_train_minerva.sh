@@ -3,8 +3,9 @@
 SCRIPTKEY=`date +%s`
 CONFIGFILE=Configs/tf_mnv_st_epsilon_local_iMac2017_prediction.cfg
 CONFIGFILE=Configs/tf_mnv_hadmult_local_iMac2017_training.cfg
-CONFIGFILE=Configs/tf_mnv_st_epsilon_local_iMac2017_training.cfg
 CONFIGFILE=Configs/tf_mnv_hadmult_local_iMac2017_prediction.cfg
+CONFIGFILE=Configs/tf_mnv_st_epsilon_local_iMac2017_training.cfg
+CONFIGFILE=Configs/tf_mnv_st_epsilon_local_iMac2017_training_menndl_633167.cfg
 
 python mnv_tf_script_gen.py $CONFIGFILE $SCRIPTKEY
 
