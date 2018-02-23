@@ -35,7 +35,8 @@ config_defaults_dict = {
     'network_model': 'TriColSTEpsilon',
     'network_creator': 'default',
     'save_every_n_batch': 500,
-    'override_machine_name_in_model': 0
+    'override_machine_name_in_model': 0,
+    'restore_repo': 0
 }
 
 config = ConfigParser.SafeConfigParser(
@@ -178,7 +179,10 @@ arg_string = ' '.join(arg_parts)
 code_source_dir = config.get('Code', 'code_source_dir')
 run_script = config.get('Code', 'run_script')
 restore_repo = int(config.get('Code', 'restore_repo'))
-restore_repo_hash = config.get('Code', 'restore_repo_hash')
+if restore_repo:
+    restore_repo_hash = config.get('Code', 'restore_repo_hash')
+else:
+    restore_repo_hash = 'HEAD'
 
 repo_info_string = """
 # print identifying info for this job
@@ -230,11 +234,11 @@ with open(os.path.join(job_dir, job_name), 'w') as f:
     f.write('cp -v {0}/{1} {2}\n'.format(
         code_source_dir, run_script, job_dir
     ))
-    f.write('\n')
     if restore_repo:
         f.write(revert_restored_repo_string.format(
             code_source_dir, restore_repo_hash
         ))
+    f.write('\n')
     if container is not '':
         f.write('singularity exec {0} python {1} {2}\n\n'.format(
             container, run_script, arg_string
