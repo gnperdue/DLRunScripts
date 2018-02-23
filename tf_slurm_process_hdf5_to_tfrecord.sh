@@ -22,6 +22,7 @@ TRAINFRAC=0.0
 VALIDFRAC=0.0
 
 PLAYLIST="me1Emc_targets_bal"
+PLAYLIST="me1Lmc"
 HDF5TYPE="hadmultkineimgs"
 TFRECSTRUCTURE="hadmultkineimgs"
 TRAINFRAC=0.88
