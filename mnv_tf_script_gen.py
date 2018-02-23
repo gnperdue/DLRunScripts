@@ -177,6 +177,8 @@ arg_string = ' '.join(arg_parts)
 
 code_source_dir = config.get('Code', 'code_source_dir')
 run_script = config.get('Code', 'run_script')
+restore_repo = int(config.get('Code', 'restore_repo'))
+restore_repo_hash = config.get('Code', 'restore_repo_hash')
 
 repo_info_string = """
 # print identifying info for this job
@@ -195,11 +197,27 @@ if [[ $DIRTY != "" ]]; then
 fi
 """
 
+restore_repo_string = """
+pushd {0} >& /dev/null
+git stash
+git checkout -b {1}-br {1}
+popd >& /dev/null
+"""
+
+revert_restored_repo_string = """
+pushd {0} >& /dev/null
+git checkout master
+git branch -d {1}-br
+popd >& /dev/null
+"""
+
 with open(os.path.join(job_dir, job_name), 'w') as f:
     f.write('#!/bin/bash\n')
     f.write('echo "started "`date`" "`date +%s`""\n')
     if 'gpu' in host_name:
         f.write('nvidia-smi -L\n')
+    if restore_repo:
+        f.write(restore_repo_string.format(code_source_dir, restore_repo_hash))
     f.write(repo_info_string.format(code_source_dir, 'Code source'))
     f.write(repo_info_string.format(job_dir, 'Work'))
     f.write('\n')
@@ -213,6 +231,10 @@ with open(os.path.join(job_dir, job_name), 'w') as f:
         code_source_dir, run_script, job_dir
     ))
     f.write('\n')
+    if restore_repo:
+        f.write(revert_restored_repo_string.format(
+            code_source_dir, restore_repo_hash
+        ))
     if container is not '':
         f.write('singularity exec {0} python {1} {2}\n\n'.format(
             container, run_script, arg_string
