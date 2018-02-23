@@ -31,12 +31,13 @@ host_name = host_name.split('.')[0]
 job_name = 'job' + script_key + '.sh'
 arg_parts = []
 
+# "The values in defaults must be appropriate for %()s string interpolation."
 config_defaults_dict = {
     'network_model': 'TriColSTEpsilon',
     'network_creator': 'default',
-    'save_every_n_batch': 500,
-    'override_machine_name_in_model': 0,
-    'restore_repo': 0
+    'save_every_n_batch': '500',
+    'override_machine_name_in_model': '0',
+    'restore_repo': '0'
 }
 
 config = ConfigParser.SafeConfigParser(
@@ -225,12 +226,9 @@ with open(os.path.join(job_dir, job_name), 'w') as f:
     f.write(repo_info_string.format(code_source_dir, 'Code source'))
     f.write(repo_info_string.format(job_dir, 'Work'))
     f.write('\n')
-    framework_code = os.listdir(os.path.join(code_source_dir, 'mnvtf'))
-    for src_file in framework_code:
-        if (src_file.split('.')[-1] == 'py'):
-            f.write('cp -v {0}/mnvtf/{1} {2}/mnvtf\n'.format(
-                code_source_dir, src_file, job_dir
-            ))
+    f.write('cp -v {0}/mnvtf/*.py {1}/mnvtf\n'.format(
+        code_source_dir, job_dir
+    ))
     f.write('cp -v {0}/{1} {2}\n'.format(
         code_source_dir, run_script, job_dir
     ))
