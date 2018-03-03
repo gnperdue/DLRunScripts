@@ -11,7 +11,7 @@ JOBDIR=`pwd`
 
 # file logistics
 PROCESSING="201801"
-STARTIDX=87
+STARTIDX=88
 TESTREAD="--test_read"
 TESTREAD=""
 
@@ -22,7 +22,7 @@ TFRECSTRUCTURE="hadmultkineimgs"
 TRAINFRAC=0.88
 VALIDFRAC=0.06
 
-PLAYLIST="me1Gdata"
+PLAYLIST="me1Fdata"
 HDF5TYPE="mnvimgs"
 TFRECSTRUCTURE="mnvimgs"
 TRAINFRAC=0.0
