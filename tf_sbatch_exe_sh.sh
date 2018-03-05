@@ -12,7 +12,7 @@ NGPU=1
 NODES=gpu2
 NODES=gpu4
 
-ARGS="--gres=gpu:${NGPU} --nodelist=${NODES} --export=SCRIPTKEY=${SCRIPTKEY} $EXESCRIPT"
+ARGS="--gres=gpu:${NGPU} --nodelist=${NODES} --export=SCRIPTKEY=${SCRIPTKEY} -p gpu $EXESCRIPT"
 
 # show what we will do...
 pushd $JOBDIR
