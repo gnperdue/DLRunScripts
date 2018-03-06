@@ -15,18 +15,18 @@ STARTIDX=0
 TESTREAD="--test_read"
 TESTREAD=""
 
-PLAYLIST="me1Emc_targets_bal"
-PLAYLIST="me1Mmc"
-HDF5TYPE="hadmultkineimgs"
-TFRECSTRUCTURE="hadmultkineimgs"
-TRAINFRAC=0.88
-VALIDFRAC=0.06
-
 PLAYLIST="me1Mdata"
 HDF5TYPE="mnvimgs"
 TFRECSTRUCTURE="mnvimgs"
 TRAINFRAC=0.0
 VALIDFRAC=0.0
+
+PLAYLIST="me1Emc_targets_bal"
+PLAYLIST="me1Cmc"
+HDF5TYPE="hadmultkineimgs"
+TFRECSTRUCTURE="hadmultkineimgs"
+TRAINFRAC=0.88
+VALIDFRAC=0.06
 
 INPUTFILEPAT="${HDF5TYPE}_127x94_${PLAYLIST}"
 HDF5DIR="/data/perdue/minerva/hdf5/${PROCESSING}"
