@@ -9,9 +9,9 @@ mkdir -p $JOBDIR
 cp $EXESCRIPT $JOBDIR
 
 NGPU=1
-NODES=gpu4
 NODES=gpu1
 NODES=gpu2
+NODES=gpu4
 
 ARGS="--gres=gpu:${NGPU} --nodelist=${NODES} --export=SCRIPTKEY=${SCRIPTKEY} -p gpu $EXESCRIPT"
 
