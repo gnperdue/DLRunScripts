@@ -22,7 +22,7 @@ TFRECSTRUCTURE="hadmultkineimgs"
 TRAINFRAC=0.88
 VALIDFRAC=0.06
 
-PLAYLIST="me1Bdata_missingfiles"
+PLAYLIST="me1Cdata_missingfiles"
 HDF5TYPE="mnvimgs"
 TFRECSTRUCTURE="mnvimgs"
 TRAINFRAC=0.0
