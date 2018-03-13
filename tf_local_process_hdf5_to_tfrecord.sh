@@ -5,22 +5,21 @@ mkdir -p job${SCRIPTKEY}
 
 # file logistics
 PROCESSING="201801"
-NEVTS=1000
-MAXTRIPS=2
+NEVTS=10000
+MAXTRIPS=1000
 STARTIDX=0
 
-PLAYLIST="me1Adata"
+PLAYLIST="me1Amc_targets_bal"
+HDF5TYPE="hadmultkineimgs"
+TFRECSTRUCTURE="hadmultkineimgs"
+TRAINFRAC=0.88
+VALIDFRAC=0.06
+
+PLAYLIST="me1Gdata_missingfiles"
 HDF5TYPE="mnvimgs"
 TFRECSTRUCTURE="mnvimgs"
 TRAINFRAC=0.0
 VALIDFRAC=0.0
-
-PLAYLIST="me1Amc_segments_bal"
-HDF5TYPE="hadmultkineimgs"
-TFRECSTRUCTURE="vtxfndingimgs"
-TFRECSTRUCTURE="hadmultkineimgs"
-TRAINFRAC=0.88
-VALIDFRAC=0.06
 
 INPUTFILEPAT="${HDF5TYPE}_127x94_${PLAYLIST}"
 HDF5DIR="${HOME}/Documents/MINERvA/AI/hdf5/${PROCESSING}"
@@ -29,7 +28,7 @@ LOGFILE=log_hdf5_to_tfrec_minerva_xtxutuvtv${SCRIPTKEY}.txt
 
 mkdir -p $OUTDIR
 
-ARGS="--nevents $NEVTS --max_triplets $MAXTRIPS --input_file_pattern $INPUTFILEPAT --in_dir $HDF5DIR --out_dir $OUTDIR --train_fraction $TRAINFRAC --valid_fraction $VALIDFRAC --logfile $LOGFILE --compress_to_gz --start_idx $STARTIDX --tfrec_struct $TFRECSTRUCTURE --test_read --playlist $PLAYLIST"
+ARGS="--nevents $NEVTS --max_triplets $MAXTRIPS --input_file_pattern $INPUTFILEPAT --in_dir $HDF5DIR --out_dir $OUTDIR --train_fraction $TRAINFRAC --valid_fraction $VALIDFRAC --logfile $LOGFILE --compress_to_gz --start_idx $STARTIDX --tfrec_struct $TFRECSTRUCTURE --playlist $PLAYLIST"
 # --test_read \
 # --dry_run
 
