@@ -23,7 +23,7 @@ VALIDFRAC=0.06
 
 INPUTFILEPAT="${HDF5TYPE}_127x94_${PLAYLIST}"
 HDF5DIR="${HOME}/Documents/MINERvA/AI/hdf5/${PROCESSING}"
-OUTDIR="${HOME}/Documents/MINERvA/AI/minerva_tf/tfrec/${PROCESSING}"
+OUTDIR="${HOME}/Documents/MINERvA/AI/minerva_tf/tfrec/${PROCESSING}/${PLAYLIST}"
 LOGFILE=log_hdf5_to_tfrec_minerva_xtxutuvtv${SCRIPTKEY}.txt
 
 mkdir -p $OUTDIR
