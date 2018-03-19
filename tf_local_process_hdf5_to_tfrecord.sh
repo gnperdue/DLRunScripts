@@ -7,7 +7,7 @@ mkdir -p job${SCRIPTKEY}
 PROCESSING="201801"
 NEVTS=10000
 MAXTRIPS=1000
-STARTIDX=0
+STARTIDX=8
 
 PLAYLIST="me1Gdata_missingfiles"
 HDF5TYPE="mnvimgs"
@@ -15,7 +15,7 @@ TFRECSTRUCTURE="mnvimgs"
 TRAINFRAC=0.0
 VALIDFRAC=0.0
 
-PLAYLIST="me1Lmc_missingfiles"
+PLAYLIST="me1Emc_missingfiles"
 HDF5TYPE="hadmultkineimgs"
 TFRECSTRUCTURE="hadmultkineimgs"
 TRAINFRAC=0.88
