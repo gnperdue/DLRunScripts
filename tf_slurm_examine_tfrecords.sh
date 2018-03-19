@@ -9,6 +9,15 @@ if [[ ${SCRIPTKEY} == "" ]]; then
 fi
 JOBDIR=`pwd`
 
+# file logistics
+PLAYLIST="me1Amc"
+TFRECTYPE="hadmultkineimgs"
+FILEPAT="${TFRECTYPE}_127x94_${PLAYLIST}"
+
+# default is eventids
+CHECKFIELD="--field n_hadmultmeas"
+CHECKFIELD=""
+
 # img pars
 IMGWX=94
 IMGWUV=47
@@ -16,24 +25,22 @@ NPLANECODES=173
 PLANECODES="--n_planecodes $NPLANECODES"
 IMGPAR="--imgw_x $IMGWX --imgw_uv $IMGWUV"
 
-# file logistics
-SAMPLE="me1Amc"
+# more file logistics
 PROCESSING="201801"
-HDF5TYPE="vtxfndingimgs"
-HDF5TYPE="hadmultkineimgs"
-FILEPAT="${HDF5TYPE}_127x94_${SAMPLE}_tiny"
-FILEPAT="${HDF5TYPE}_127x94_${SAMPLE}"
+BASEP="/data/minerva/perdue/minerva/tensorflow"
+DATADIR="${BASEP}/data/${PROCESSING}/${PLAYLIST}"
+LOGFILE="log_examine_tfrec_127x${IMGWX}x${IMGWUV}_${PLAYLIST}_${SCRIPTKEY}.txt"
+OUTPAT="results_examine_tfrec_127x${IMGWX}x${IMGWUV}_${PLAYLIST}_${SCRIPTKEY}"
 
-BASEP="/data/perdue/minerva/tensorflow"
-DATADIR="${BASEP}/data/${PROCESSING}/${SAMPLE}"
-LOGFILE="log_examine_tfrec_127x${IMGWX}x${IMGWUV}_${SAMPLE}_${SCRIPTKEY}.txt"
-OUTPAT="results_examine_tfrec_127x${IMGWX}x${IMGWUV}_${SAMPLE}_${SCRIPTKEY}"
 
 # pick up singularity v2.2
 export PATH=/usr/local/singularity/bin:$PATH
 # which singularity image
 SNGLRTY="/data/perdue/singularity/tf_1_4.simg"
-CODEDIR="/home/perdue/ANNMINERvA/TensorFlow"
+CODEDIR="/home/perdue/ANNMINERvA"
+
+echo "started "`date`" "`date +%s`""
+nvidia-smi -L
 
 function check_repo
 {
@@ -60,16 +67,16 @@ echo "Work is `pwd`"
 check_repo
 
 cp -rv ${CODEDIR}/mnvtf `pwd`
-cp -v ${CODEDIR}/hdf5_to_tfrec_minerva_xtxutuvtv.py `pwd`
+cp -v ${CODEDIR}/tfrec_examiner.py `pwd`
 
-ARGS="--data_dir $DATADIR --file_root $FILEPAT --compression gz --log_name $LOGFILE --out_pattern $OUTPAT $PLANECODES $IMGPAR"
+ARGS="--data_dir $DATADIR --file_root $FILEPAT --compression gz --log_name $LOGFILE --out_pattern $OUTPAT $PLANECODES $IMGPAR --tfrec_type $TFRECTYPE $CHECKFIELD"
 
 # show what we will do...
 cat << EOF
-singularity exec $SNGLRTY python $PYPROG $ARGS
+singularity exec $SNGLRTY python tfrec_examiner.py $ARGS
 EOF
 
-singularity exec $SNGLRTY python $PYPROG $ARGS
+singularity exec $SNGLRTY python tfrec_examiner.py $ARGS
 
 nvidia-smi -L >> $LOGFILE
 nvidia-smi >> $LOGFILE
