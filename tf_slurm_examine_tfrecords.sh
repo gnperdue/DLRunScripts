@@ -12,6 +12,10 @@ JOBDIR=`pwd`
 # file logistics
 PLAYLIST="me1Amc"
 TFRECTYPE="hadmultkineimgs"
+
+PLAYLIST="me1Adata_missingfiles"
+TFRECTYPE="mnvimgs"
+
 FILEPAT="${TFRECTYPE}_127x94_${PLAYLIST}"
 
 # default is eventids
