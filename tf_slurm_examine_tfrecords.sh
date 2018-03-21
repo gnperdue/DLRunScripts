@@ -13,7 +13,7 @@ JOBDIR=`pwd`
 PLAYLIST="me1Amc"
 TFRECTYPE="hadmultkineimgs"
 
-PLAYLIST="me1Cdata"
+PLAYLIST="me1Ldata"
 TFRECTYPE="mnvimgs"
 
 FILEPAT="${TFRECTYPE}_127x94_${PLAYLIST}"
