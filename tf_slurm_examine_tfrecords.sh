@@ -10,11 +10,11 @@ fi
 JOBDIR=`pwd`
 
 # file logistics
-PLAYLIST="me1Amc"
-TFRECTYPE="hadmultkineimgs"
-
 PLAYLIST="me1Pdata"
 TFRECTYPE="mnvimgs"
+
+PLAYLIST="me1Dmc"
+TFRECTYPE="hadmultkineimgs"
 
 FILEPAT="${TFRECTYPE}_127x94_${PLAYLIST}"
 
