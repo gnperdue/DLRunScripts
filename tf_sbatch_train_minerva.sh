@@ -7,11 +7,12 @@ CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_prediction_using_ABGEroicaPlus
 CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_training_ABCDG.cfg
 CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_training_EF.cfg
 CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_training_MN.cfg
+CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_training_LOP.cfg
 python mnv_tf_script_gen.py $CONFIGFILE $SCRIPTKEY
 
 NGPU=1
-NODES=gpu2
 NODES=gpu4
+NODES=gpu2
 
 # show what we will do...
 cat << EOF
