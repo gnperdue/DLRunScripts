@@ -4,10 +4,10 @@ SCRIPTKEY=`date +%s`
 CONFIGFILE=Configs/tf_mnv_hadmultp_wilson_cluster_training_AB.cfg
 CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_training_Etargbal.cfg
 CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_prediction_using_ABGEroicaPlus.cfg
-CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_training_LOP.cfg
 CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_training_ABCDG.cfg
 CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_training_EF.cfg
 CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_training_MN.cfg
+CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_training_LOP.cfg
 python mnv_tf_script_gen.py $CONFIGFILE $SCRIPTKEY
 
 NGPU=1
