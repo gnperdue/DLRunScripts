@@ -123,7 +123,6 @@ data_basep = append_proc_version_unless_present(
 data_dirs = [os.path.join(data_basep, pth)
              for pth in config.get('Paths', 'data_ext_dirs').split(',')]
 for dd in data_dirs:
-    print('Checking data directory {} exists...'.format(dd))
     assert os.path.exists(dd)
 data_dirs_flag = '--data_dir ' + ','.join(data_dirs)
 log_dir = config.get('Paths', 'log_path')
