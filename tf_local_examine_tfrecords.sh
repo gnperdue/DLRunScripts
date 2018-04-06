@@ -6,7 +6,7 @@ mkdir -p job${SCRIPTKEY}
 PLAYLIST="me1Adata"
 TFRECTYPE="mnvimgs"
 
-PLAYLIST="me1Amc_missingfiles"
+PLAYLIST="me1Mmc"
 TFRECTYPE="hadmultkineimgs"
 
 PROCESSING="201804"
@@ -24,8 +24,8 @@ IMGPAR="--imgw_x $IMGWX --imgw_uv $IMGWUV"
 FILEPAT="${TFRECTYPE}_127x${IMGWX}_${PLAYLIST}"
 
 # default is eventids
-CHECKFIELD=""
 CHECKFIELD="--field planecodes"
+CHECKFIELD=""
 
 ARGS="--data_dir $DATADIR --file_root $FILEPAT --compression gz --log_name $LOGFILE --out_pattern $OUTPAT $PLANECODES $IMGPAR --tfrec_type $TFRECTYPE $CHECKFIELD"
 
