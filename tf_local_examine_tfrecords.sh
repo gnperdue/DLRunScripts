@@ -6,10 +6,10 @@ mkdir -p job${SCRIPTKEY}
 PLAYLIST="me1Adata"
 TFRECTYPE="mnvimgs"
 
-PLAYLIST="me1Amc_missingfiles"
+PLAYLIST="me1Mmc"
 TFRECTYPE="hadmultkineimgs"
 
-PROCESSING="201801"
+PROCESSING="201804"
 BASEP="${HOME}/Documents/MINERvA/AI/minerva_tf"
 DATADIR="${BASEP}/tfrec/${PROCESSING}/${PLAYLIST}"
 LOGFILE="log_examine_tfrec${SCRIPTKEY}.txt"
@@ -17,14 +17,14 @@ OUTPAT="result_examine_tfrec${SCRIPTKEY}"
 
 IMGWX=94
 IMGWUV=47
-NPLANECODES=173
+NPLANECODES=174
 PLANECODES="--n_planecodes $NPLANECODES"
 IMGPAR="--imgw_x $IMGWX --imgw_uv $IMGWUV"
 
 FILEPAT="${TFRECTYPE}_127x${IMGWX}_${PLAYLIST}"
 
 # default is eventids
-CHECKFIELD="--field n_hadmultmeas"
+CHECKFIELD="--field planecodes"
 CHECKFIELD=""
 
 ARGS="--data_dir $DATADIR --file_root $FILEPAT --compression gz --log_name $LOGFILE --out_pattern $OUTPAT $PLANECODES $IMGPAR --tfrec_type $TFRECTYPE $CHECKFIELD"

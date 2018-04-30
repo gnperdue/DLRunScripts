@@ -13,7 +13,7 @@ JOBDIR=`pwd`
 PLAYLIST="me1Pdata"
 TFRECTYPE="mnvimgs"
 
-PLAYLIST="me1Pmc"
+PLAYLIST="me1Nmc_targetonly"
 TFRECTYPE="hadmultkineimgs"
 
 FILEPAT="${TFRECTYPE}_127x94_${PLAYLIST}"
@@ -25,12 +25,12 @@ CHECKFIELD=""
 # img pars
 IMGWX=94
 IMGWUV=47
-NPLANECODES=173
+NPLANECODES=174
 PLANECODES="--n_planecodes $NPLANECODES"
 IMGPAR="--imgw_x $IMGWX --imgw_uv $IMGWUV"
 
 # more file logistics
-PROCESSING="201801"
+PROCESSING="201804"
 BASEP="/data/minerva/perdue/minerva/tensorflow"
 DATADIR="${BASEP}/data/${PROCESSING}/${PLAYLIST}"
 LOGFILE="log_examine_tfrec_127x${IMGWX}x${IMGWUV}_${PLAYLIST}_${SCRIPTKEY}.txt"

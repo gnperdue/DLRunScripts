@@ -10,8 +10,8 @@ fi
 JOBDIR=`pwd`
 
 # file logistics
-PROCESSING="201801"
-STARTIDX=156
+PROCESSING="201804"
+STARTIDX=0
 TESTREAD="--test_read"
 TESTREAD=""
 
@@ -23,7 +23,7 @@ TRAINFRAC=0.0
 VALIDFRAC=0.0
 
 PLAYLIST="me1Emc_targets_bal"
-PLAYLIST="me1Fmc"
+PLAYLIST="me1Cmc_targetonly"
 HDF5TYPE="hadmultkineimgs"
 TFRECSTRUCTURE="hadmultkineimgs"
 TRAINFRAC=0.88
@@ -37,6 +37,26 @@ LOGFILE="log_hdf5_to_tfrec_minerva_xtxutuvtv${SCRIPTKEY}.txt"
 # file creation parameters
 NEVTS=10000
 MAXTRIPS=1000
+
+# 0 -> 49
+# STARTIDX=0
+# MAXTRIPS=50
+
+# 50 -> 99
+STARTIDX=50
+MAXTRIPS=50
+
+# 100 -> 149
+# STARTIDX=100
+# MAXTRIPS=50
+
+# 150 -> 199
+# STARTIDX=150
+# MAXTRIPS=50
+
+# 200 -> 249
+# STARTIDX=200
+# MAXTRIPS=50
 
 # pick up singularity v2.2 ??
 export PATH=/usr/local/singularity/bin:$PATH

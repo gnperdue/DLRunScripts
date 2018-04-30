@@ -8,6 +8,13 @@ import os
 import sys
 
 
+# of historic note...
+NXPROCESSING_VERSIONS = [
+    '201801',   # data and mc w/ 173 planecodes
+    '201804'    # mc only (reuse 201801 for data) w/ 174 planecodes
+]
+
+
 def setup_dir(dirname):
     if not os.path.exists(dirname):
         os.makedirs(dirname)
@@ -88,7 +95,21 @@ save_every_n_batch = int(config.get('Training', 'save_every_n_batch'))
 network_model = config.get('Training', 'network_model')
 network_creator = config.get('Training', 'network_creator')
 
+
+def append_proc_version_unless_present(path, procver):
+    if path[-1] == '/':
+        path = path[:-1]
+    path_parts = path.split('/')
+    # if the end part of a path is _not_ a proc. ver, append the proc. ver
+    if path_parts[-1] not in NXPROCESSING_VERSIONS:
+        path = os.path.join(path, procver)
+    return path
+
+
 # paths
+processing_version = config.get('Paths', 'processing_version')
+if processing_version not in NXPROCESSING_VERSIONS:
+    print('WARNING - this is not a recognized NX processing version!')
 model_version = config.get('Paths', 'model_version')
 model_code = model_version + '_' + targets_label + '_nclass' + \
              str(n_classes) + '_train' + train_sample.upper() + \
@@ -96,9 +117,8 @@ model_code = model_version + '_' + targets_label + '_nclass' + \
              test_sample.upper() + '_opt' + optimizer.upper() + \
              '_batchsz' + str(batch_size) + '_' + batch_norm_label + '_' + \
              machine_name_in_model
-data_basep = os.path.join(
-    config.get('Paths', 'data_path'),
-    config.get('Paths', 'processing_version')
+data_basep = append_proc_version_unless_present(
+    config.get('Paths', 'data_path'), processing_version
 )
 data_dirs = [os.path.join(data_basep, pth)
              for pth in config.get('Paths', 'data_ext_dirs').split(',')]
@@ -118,15 +138,16 @@ log_file = os.path.join(
 )
 log_file_flag = '--log_name ' + log_file
 model_dir = os.path.join(
-    config.get('Paths', 'models_path'),
-    config.get('Paths', 'processing_version'),
+    append_proc_version_unless_present(
+        config.get('Paths', 'models_path'),
+        processing_version
+    ),
     model_code
 )
 setup_dir(model_dir)
 model_dir_flag = '--model_dir ' + model_dir
-pred_store_dir = os.path.join(
-    config.get('Paths', 'pred_path'),
-    config.get('Paths', 'processing_version'),
+pred_store_dir = append_proc_version_unless_present(
+    config.get('Paths', 'pred_path'), processing_version
 )
 setup_dir(pred_store_dir)
 pred_store_name = os.path.join(
