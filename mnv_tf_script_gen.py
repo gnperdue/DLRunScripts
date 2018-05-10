@@ -257,7 +257,7 @@ with open(os.path.join(job_dir, job_name), 'w') as f:
         ))
     f.write('\n')
     if container is not '':
-        f.write('singularity exec {0} python {1} {2}\n\n'.format(
+        f.write('singularity exec --nv {0} python {1} {2}\n\n'.format(
             container, run_script, arg_string
         ))
     else:
