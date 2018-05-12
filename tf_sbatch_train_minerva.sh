@@ -2,8 +2,6 @@
 
 SCRIPTKEY=`date +%s`
 CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_training_LOP.cfg
-CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_data_prediction_using_LOP.cfg
-CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_mc_prediction_using_LOP.cfg
 CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_training_ABCDG.cfg
 CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_training_EF.cfg
 CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_training_MN.cfg
@@ -13,6 +11,8 @@ CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_data_prediction_using_EF.cfg
 CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_mc_prediction_using_EF.cfg
 CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_mc_prediction_using_MN.cfg
 CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_data_prediction_using_MN.cfg
+CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_data_prediction_using_LOP.cfg
+CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_mc_prediction_using_LOP.cfg
 python mnv_tf_script_gen.py $CONFIGFILE $SCRIPTKEY
 
 NGPU=1
