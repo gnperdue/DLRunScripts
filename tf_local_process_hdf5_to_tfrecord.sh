@@ -5,9 +5,14 @@ mkdir -p job${SCRIPTKEY}
 
 # file logistics
 PROCESSING="201804"
+PROCESSING="201805"
+
 NEVTS=10000
 MAXTRIPS=1000
-STARTIDX=24
+STARTIDX=0
+
+# MAXTRIPS=4
+# STARTIDX=5
 
 PLAYLIST="me1Gdata_missingfiles"
 HDF5TYPE="mnvimgs"
@@ -15,9 +20,15 @@ TFRECSTRUCTURE="mnvimgs"
 TRAINFRAC=0.0
 VALIDFRAC=0.0
 
-PLAYLIST="me1Lmc"
+PLAYLIST="me1Emc_missingfiles"
 HDF5TYPE="hadmultkineimgs"
 TFRECSTRUCTURE="hadmultkineimgs"
+TRAINFRAC=0.88
+VALIDFRAC=0.06
+
+PLAYLIST="me1XYZmc"
+HDF5TYPE="wholevtimgs"
+TFRECSTRUCTURE="wholevtimgs"
 TRAINFRAC=0.88
 VALIDFRAC=0.06
 
@@ -28,7 +39,7 @@ LOGFILE=log_hdf5_to_tfrec_minerva_xtxutuvtv${SCRIPTKEY}.txt
 
 mkdir -p $OUTDIR
 
-ARGS="--nevents $NEVTS --max_triplets $MAXTRIPS --input_file_pattern $INPUTFILEPAT --in_dir $HDF5DIR --out_dir $OUTDIR --train_fraction $TRAINFRAC --valid_fraction $VALIDFRAC --logfile $LOGFILE --compress_to_gz --start_idx $STARTIDX --tfrec_struct $TFRECSTRUCTURE --playlist $PLAYLIST"
+ARGS="--nevents $NEVTS --max_triplets $MAXTRIPS --input_file_pattern $INPUTFILEPAT --in_dir $HDF5DIR --out_dir $OUTDIR --train_fraction $TRAINFRAC --valid_fraction $VALIDFRAC --logfile $LOGFILE --compress_to_gz --start_idx $STARTIDX --tfrec_struct $TFRECSTRUCTURE --playlist $PLAYLIST --test_read"
 # --test_read \
 # --dry_run
 

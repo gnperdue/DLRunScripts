@@ -6,10 +6,14 @@ mkdir -p job${SCRIPTKEY}
 PLAYLIST="me1Adata"
 TFRECTYPE="mnvimgs"
 
-PLAYLIST="me1Mmc"
+PLAYLIST="me1Fmc"
 TFRECTYPE="hadmultkineimgs"
 
-PROCESSING="201804"
+PLAYLIST="me1XYZmc"
+TFRECTYPE="wholevtimgs"
+
+PROCESSING="201805"
+
 BASEP="${HOME}/Documents/MINERvA/AI/minerva_tf"
 DATADIR="${BASEP}/tfrec/${PROCESSING}/${PLAYLIST}"
 LOGFILE="log_examine_tfrec${SCRIPTKEY}.txt"
