@@ -10,17 +10,10 @@ fi
 JOBDIR=`pwd`
 
 # file logistics
-PROCESSING="201804"
+PROCESSING="201805"
 STARTIDX=0
 TESTREAD="--test_read"
 TESTREAD=""
-
-PLAYLIST="me1Cdata_missingfiles"
-PLAYLIST="me1Mdata"
-HDF5TYPE="mnvimgs"
-TFRECSTRUCTURE="mnvimgs"
-TRAINFRAC=0.0
-VALIDFRAC=0.0
 
 PLAYLIST="me1Emc_targets_bal"
 PLAYLIST="me1Cmc_targetonly"
@@ -28,6 +21,13 @@ HDF5TYPE="hadmultkineimgs"
 TFRECSTRUCTURE="hadmultkineimgs"
 TRAINFRAC=0.88
 VALIDFRAC=0.06
+
+PLAYLIST="me1Cdata_missingfiles"
+PLAYLIST="me6Adata"
+HDF5TYPE="mnvimgs"
+TFRECSTRUCTURE="mnvimgs"
+TRAINFRAC=0.0
+VALIDFRAC=0.0
 
 INPUTFILEPAT="${HDF5TYPE}_127x94_${PLAYLIST}"
 HDF5DIR="/data/perdue/minerva/hdf5/${PROCESSING}"
@@ -38,13 +38,29 @@ LOGFILE="log_hdf5_to_tfrec_minerva_xtxutuvtv${SCRIPTKEY}.txt"
 NEVTS=10000
 MAXTRIPS=1000
 
+# 0 -> 24
+STARTIDX=0
+MAXTRIPS=25
+
+# 25 -> 49
+# STARTIDX=25
+# MAXTRIPS=25
+
+# 50 -> 74
+# STARTIDX=50
+# MAXTRIPS=25
+
+# 75 -> 99
+# STARTIDX=75
+# MAXTRIPS=25
+
 # 0 -> 49
 # STARTIDX=0
 # MAXTRIPS=50
 
 # 50 -> 99
-STARTIDX=50
-MAXTRIPS=50
+# STARTIDX=50
+# MAXTRIPS=50
 
 # 100 -> 149
 # STARTIDX=100
@@ -61,7 +77,7 @@ MAXTRIPS=50
 # pick up singularity v2.2 ??
 export PATH=/usr/local/singularity/bin:$PATH
 # which singularity image
-SNGLRTY="/data/perdue/singularity/tf_1_4.simg"
+SNGLRTY="/data/perdue/singularity/gnperdue-singularity_imgs-master-py2_tf17.simg"
 CODEDIR="/home/perdue/ANNMINERvA"
 
 echo "started "`date`" "`date +%s`""
