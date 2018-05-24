@@ -39,8 +39,8 @@ NEVTS=10000
 MAXTRIPS=1000
 
 # 0 -> 24
-# STARTIDX=0
-# MAXTRIPS=25
+STARTIDX=0
+MAXTRIPS=25
 
 # 25 -> 49
 # STARTIDX=25
@@ -51,8 +51,8 @@ MAXTRIPS=1000
 # MAXTRIPS=25
 
 # 75 -> 99
-STARTIDX=75
-MAXTRIPS=25
+# STARTIDX=75
+# MAXTRIPS=25
 
 # 0 -> 49
 # STARTIDX=0
@@ -74,8 +74,6 @@ MAXTRIPS=25
 # STARTIDX=200
 # MAXTRIPS=50
 
-# pick up singularity v2.2 ??
-export PATH=/usr/local/singularity/bin:$PATH
 # which singularity image
 SNGLRTY="/data/perdue/singularity/gnperdue-singularity_imgs-master-py2_tf17.simg"
 CODEDIR="/home/perdue/ANNMINERvA"
@@ -116,10 +114,10 @@ ARGS="--nevents $NEVTS --max_triplets $MAXTRIPS --input_file_pattern $INPUTFILEP
 
 # show what we will do...
 cat << EOF
-singularity exec $SNGLRTY python hdf5_to_tfrec_minerva_xtxutuvtv.py $ARGS
+singularity exec --nv $SNGLRTY python hdf5_to_tfrec_minerva_xtxutuvtv.py $ARGS
 EOF
 
-singularity exec $SNGLRTY python hdf5_to_tfrec_minerva_xtxutuvtv.py $ARGS
+singularity exec --nv $SNGLRTY python hdf5_to_tfrec_minerva_xtxutuvtv.py $ARGS
 
 nvidia-smi -L >> $LOGFILE
 nvidia-smi >> $LOGFILE
