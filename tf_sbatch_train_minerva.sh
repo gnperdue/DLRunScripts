@@ -21,12 +21,12 @@ NODES=gpu4
 
 # show what we will do...
 cat << EOF
-sbatch --gres=gpu:${NGPU} --nodelist=${NODES} -p gpu job${SCRIPTKEY}.sh
+sbatch --gres=gpu:${NGPU} --nodelist=${NODES} -A minervag -p gpu job${SCRIPTKEY}.sh
 EOF
 
 # do the thing, etc.
 pushd job${SCRIPTKEY}
 # cat job${SCRIPTKEY}.sh >& job_log.txt
-sbatch --gres=gpu:${NGPU} --nodelist=${NODES} -p gpu job${SCRIPTKEY}.sh
+sbatch --gres=gpu:${NGPU} --nodelist=${NODES} -A minervag -p gpu job${SCRIPTKEY}.sh
 popd
 

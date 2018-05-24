@@ -14,7 +14,7 @@ NODES=gpu2
 NODES=gpu3
 NODES=gpu4
 
-ARGS="--gres=gpu:${NGPU} --nodelist=${NODES} --export=SCRIPTKEY=${SCRIPTKEY} -p gpu $EXESCRIPT"
+ARGS="--gres=gpu:${NGPU} --nodelist=${NODES} --export=SCRIPTKEY=${SCRIPTKEY} -A minervag -p gpu $EXESCRIPT"
 
 # show what we will do...
 pushd $JOBDIR
