@@ -23,7 +23,7 @@ TRAINFRAC=0.88
 VALIDFRAC=0.06
 
 PLAYLIST="me1Cdata_missingfiles"
-PLAYLIST="me5Adata"
+PLAYLIST="me6Bdata"
 HDF5TYPE="mnvimgs"
 TFRECSTRUCTURE="mnvimgs"
 TRAINFRAC=0.0
