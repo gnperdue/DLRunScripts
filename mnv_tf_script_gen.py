@@ -11,7 +11,8 @@ import sys
 # of historic note...
 NXPROCESSING_VERSIONS = [
     '201801',   # data and mc w/ 173 planecodes
-    '201804'    # mc only (reuse 201801 for data) w/ 174 planecodes
+    '201804',   # mc only (reuse 201801 for data) w/ 174 planecodes
+    '201805',   # antinuetrino target analyses w/ 174 planecodes
 ]
 
 
