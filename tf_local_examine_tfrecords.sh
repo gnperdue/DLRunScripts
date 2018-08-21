@@ -3,16 +3,17 @@
 SCRIPTKEY=`date +%s`
 mkdir -p job${SCRIPTKEY}
 
+PROCESSING="201801"
 PLAYLIST="me1Adata"
 TFRECTYPE="mnvimgs"
 
-PLAYLIST="me1Fmc"
-TFRECTYPE="hadmultkineimgs"
-
+PROCESSING="201805"
 PLAYLIST="me1XYZmc"
 TFRECTYPE="wholevtimgs"
 
-PROCESSING="201805"
+PROCESSING="201804"
+PLAYLIST="me1Amc_missingfiles"
+TFRECTYPE="hadmultkineimgs"
 
 BASEP="${HOME}/Documents/MINERvA/AI/minerva_tf"
 DATADIR="${BASEP}/tfrec/${PROCESSING}/${PLAYLIST}"
@@ -28,8 +29,8 @@ IMGPAR="--imgw_x $IMGWX --imgw_uv $IMGWUV"
 FILEPAT="${TFRECTYPE}_127x${IMGWX}_${PLAYLIST}"
 
 # default is eventids
-CHECKFIELD="--field planecodes"
 CHECKFIELD=""
+CHECKFIELD="--field planecodes"
 
 ARGS="--data_dir $DATADIR --file_root $FILEPAT --compression gz --log_name $LOGFILE --out_pattern $OUTPAT $PLANECODES $IMGPAR --tfrec_type $TFRECTYPE $CHECKFIELD"
 
