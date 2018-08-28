@@ -45,7 +45,8 @@ config_defaults_dict = {
     'network_creator': 'default',
     'save_every_n_batch': '500',
     'override_machine_name_in_model': '0',
-    'restore_repo': '0'
+    'restore_repo': '0',
+    'hdf5': '0',
 }
 
 config = ConfigParser.SafeConfigParser(
@@ -74,6 +75,7 @@ targets_label = config.get('DataDescription', 'targets_label')
 tfrec_type = config.get('DataDescription', 'tfrec_type')
 filepat = config.get('DataDescription', 'filepat')
 compression = config.get('DataDescription', 'compression')
+hdf5 = config.get('DataDescription', 'hdf5')
 
 # sample labels
 train_sample = config.get('SampleLabels', 'train')
@@ -179,6 +181,7 @@ arg_parts.append(data_dirs_flag)
 arg_parts.append(log_file_flag)
 arg_parts.append(model_dir_flag)
 arg_parts.append('--tfrec_type %s' % tfrec_type)
+arg_parts.append('--do_hdf5' if int(hdf5) else '--nodo_hdf5')
 
 # run opt switches
 arg_parts.append('--log_level %s' % log_level)
