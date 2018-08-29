@@ -34,6 +34,13 @@ HDF5DIR="/data/perdue/minerva/hdf5/${PROCESSING}"
 OUTDIR="/data/minerva/perdue/minerva/tensorflow/data/${PROCESSING}/${PLAYLIST}"
 LOGFILE="log_hdf5_to_tfrec_minerva_xtxutuvtv${SCRIPTKEY}.txt"
 
+# LUSTRE TEST - DELETE LATER
+HDF5DIR="/lfstev/e-938/perdue/test/hdf5"
+OUTDIR="/lfstev/e-938/perdue/test/tfrecord"
+INPUTFILEPAT="hadmultkineimgs_127x94_me1Pmc_tiny"
+PLAYLIST="me1Pmc"
+# -END LUSTRE TEST
+
 # file creation parameters
 NEVTS=10000
 MAXTRIPS=1000
@@ -76,6 +83,7 @@ MAXTRIPS=1000
 
 # which singularity image
 SNGLRTY="/data/perdue/singularity/gnperdue-singularity_imgs-master-py2_tf17.simg"
+SNGLRTY="/data/perdue/singularity/gnperdue-singularity_imgs-master-py2_tf18.simg"
 CODEDIR="/home/perdue/ANNMINERvA"
 
 echo "started "`date`" "`date +%s`""
