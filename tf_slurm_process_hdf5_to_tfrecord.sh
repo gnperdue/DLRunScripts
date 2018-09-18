@@ -10,17 +10,10 @@ fi
 JOBDIR=`pwd`
 
 # file logistics
-PROCESSING="201805"
+PROCESSING="201808"
 STARTIDX=0
 TESTREAD="--test_read"
 TESTREAD=""
-
-PLAYLIST="me1Emc_targets_bal"
-PLAYLIST="me1Cmc_targetonly"
-HDF5TYPE="hadmultkineimgs"
-TFRECSTRUCTURE="hadmultkineimgs"
-TRAINFRAC=0.88
-VALIDFRAC=0.06
 
 PLAYLIST="me1Cdata_missingfiles"
 PLAYLIST="me6Bdata"
@@ -29,16 +22,23 @@ TFRECSTRUCTURE="mnvimgs"
 TRAINFRAC=0.0
 VALIDFRAC=0.0
 
+PLAYLIST="me1Cmc_targetonly"
+PLAYLIST="me5Amc"
+HDF5TYPE="hadmultkineimgs"
+TFRECSTRUCTURE="hadmultkineimgs"
+TRAINFRAC=0.88
+VALIDFRAC=0.06
+
 INPUTFILEPAT="${HDF5TYPE}_127x94_${PLAYLIST}"
 HDF5DIR="/data/perdue/minerva/hdf5/${PROCESSING}"
 OUTDIR="/data/minerva/perdue/minerva/tensorflow/data/${PROCESSING}/${PLAYLIST}"
 LOGFILE="log_hdf5_to_tfrec_minerva_xtxutuvtv${SCRIPTKEY}.txt"
 
 # LUSTRE TEST - DELETE LATER
-HDF5DIR="/lfstev/e-938/perdue/test/hdf5"
-OUTDIR="/lfstev/e-938/perdue/test/tfrecord"
-INPUTFILEPAT="hadmultkineimgs_127x94_me1Pmc_tiny"
-PLAYLIST="me1Pmc"
+# HDF5DIR="/lfstev/e-938/perdue/test/hdf5"
+# OUTDIR="/lfstev/e-938/perdue/test/tfrecord"
+# INPUTFILEPAT="hadmultkineimgs_127x94_me1Pmc_tiny"
+# PLAYLIST="me1Pmc"
 # -END LUSTRE TEST
 
 # file creation parameters
