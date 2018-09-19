@@ -15,6 +15,7 @@ CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_mc_prediction_using_LOP.cfg
 CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_mc_prediction_using_MN.cfg
 CONFIGFILE=Configs/tf_mnv_vtxfindr_wilson_cluster_mc_prediction_using_EF_hdf5.cfg
 CONFIGFILE=Configs/tf_mnv_antinu_vtxfindr_wilson_cluster_training_5A6B.cfg
+CONFIGFILE=Configs/tf_mnv_antinu_vtxfindr_wilson_cluster_training_6A.cfg
 python mnv_tf_script_gen.py $CONFIGFILE $SCRIPTKEY
 
 NGPU=1
